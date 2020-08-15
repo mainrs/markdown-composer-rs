@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["markdown_composer"] = [{"text":"impl StructuralEq for LinkBuilder","synthetic":false,"types":[]},{"text":"impl StructuralEq for HeaderLevel","synthetic":false,"types":[]},{"text":"impl StructuralEq for Header","synthetic":false,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
