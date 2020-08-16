@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["CheckmarkItem",""]]});
+initSidebarItems({"struct":[["CheckmarkItem",""]],"trait":[["Strikethrough",""]]});
