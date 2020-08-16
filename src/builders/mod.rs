@@ -1,6 +1,7 @@
 //! Contains builders for all Markdown content types.
 //!
-//! The API provides inside this module can be used to declare Markdown files in an imperative style:
+//! The API provides inside this module can be used to declare Markdown files in
+//! an imperative style:
 //!
 //! ```rust,norun
 //! let rendered = Markdown::builder()

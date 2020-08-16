@@ -17,7 +17,12 @@ impl Link {
         Self::default()
     }
 
-    pub fn from(text: impl Into<String>, url: impl Into<String>, footer: bool, inlined: bool) -> Self {
+    pub fn from(
+        text: impl Into<String>,
+        url: impl Into<String>,
+        footer: bool,
+        inlined: bool,
+    ) -> Self {
         Self {
             text: text.into(),
             url: url.into(),

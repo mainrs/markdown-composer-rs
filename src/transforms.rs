@@ -3,7 +3,10 @@ pub trait BlockQuote {
     fn block_quote_multi_line(&self) -> String;
 }
 
-impl<T> BlockQuote for T where T: AsRef<str> {
+impl<T> BlockQuote for T
+where
+    T: AsRef<str>,
+{
     fn block_quote(&self) -> String {
         format!("> {}", self.as_ref())
     }
@@ -36,7 +39,10 @@ pub trait CodeBlock {
     fn code_block_with_language<S: AsRef<str>>(&self, language: S) -> String;
 }
 
-impl<T> CodeBlock for T where T: AsRef<str> {
+impl<T> CodeBlock for T
+where
+    T: AsRef<str>,
+{
     fn code_block(&self) -> String {
         format!("```\n{}\n```", self.as_ref())
     }
@@ -50,7 +56,10 @@ pub trait Inline {
     fn inline(&self) -> String;
 }
 
-impl<T> Inline for T where T: AsRef<str> {
+impl<T> Inline for T
+where
+    T: AsRef<str>,
+{
     fn inline(&self) -> String {
         format!("`{}`", self.as_ref())
     }
@@ -60,7 +69,10 @@ pub trait Italic {
     fn italic(&self) -> String;
 }
 
-impl<T> Italic for T where T: AsRef<str> {
+impl<T> Italic for T
+where
+    T: AsRef<str>,
+{
     fn italic(&self) -> String {
         format!("*{}*", self.as_ref())
     }
@@ -68,10 +80,7 @@ impl<T> Italic for T where T: AsRef<str> {
 
 #[cfg(test)]
 mod tests {
-    use super::Bold;
-    use super::Italic;
-    use super::BlockQuote;
-    use super::Inline;
+    use super::{BlockQuote, Bold, Inline, Italic};
 
     #[test]
     fn test_block_quote_single_line() {

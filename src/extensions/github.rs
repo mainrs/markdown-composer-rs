@@ -27,7 +27,10 @@ pub trait Strikethrough {
     fn strikethrough(&self) -> String;
 }
 
-impl<T> Strikethrough for T where T: AsRef<str> {
+impl<T> Strikethrough for T
+where
+    T: AsRef<str>,
+{
     fn strikethrough(&self) -> String {
         format!("~{}~", self.as_ref())
     }

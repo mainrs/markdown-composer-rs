@@ -1,7 +1,8 @@
 use dyn_clonable::clonable;
 use std::fmt;
 
-/// A [MarkdownElement](trait.MarkdownElement.html) that can be rendered as a footer value.
+/// A [MarkdownElement](trait.MarkdownElement.html) that can be rendered as a
+/// footer value.
 pub trait AsFooter {
     /// Returns the `MarkdownElement` that can be used to render the footer.
     fn as_footer(&self) -> Box<dyn MarkdownElement>;

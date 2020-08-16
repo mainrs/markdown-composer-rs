@@ -1,7 +1,7 @@
-use tousize::ToUsize;
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use std::fmt;
+use tousize::ToUsize;
 
 /// The level of a header.
 #[derive(Clone, Debug, Eq, PartialEq)]

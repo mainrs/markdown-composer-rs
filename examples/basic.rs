@@ -21,13 +21,12 @@
 //         );
 
 //     println!("{}", doc.to_string());
-//     let text = "# Header 1\n\nParagraph one\n\nParagraph two\n\n## Header 2\n\nSome more text\n\n";
-//     assert_eq!(text, doc.to_string());
+//     let text = "# Header 1\n\nParagraph one\n\nParagraph two\n\n## Header
+// 2\n\nSome more text\n\n";     assert_eq!(text, doc.to_string());
 // }
-use markdown_composer::builders::list::ListBuilder;
-use markdown_composer::extensions::github::CheckmarkItem;
-use markdown_composer::types::markdown::Markdown;
-use markdown_composer::Link;
+use markdown_composer::{
+    builders::list::ListBuilder, extensions::github::CheckmarkItem, types::markdown::Markdown, Link,
+};
 
 fn main() {
     let mut md = Markdown::with_remark();
@@ -43,11 +42,11 @@ fn main() {
                 .ordered(),
         );
         let link = Link::builder()
-        .footer(true)
-        .text("Hello")
-        .inlined()
-        .url("https://hello.world")
-        .build();
+            .footer(true)
+            .text("Hello")
+            .inlined()
+            .url("https://hello.world")
+            .build();
         md.link(link);
     }
     println!("{}", md);

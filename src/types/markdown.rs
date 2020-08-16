@@ -1,13 +1,12 @@
-use crate::traits::{AsFooter, MarkdownElement};
-use crate::types::header::Header;
-use crate::types::link::Link;
-use crate::types::list::List;
-use crate::types::paragraph::Paragraph;
-use crate::PRELIMINARY_REMARK;
-use tousize::ToUsize;
+use crate::{
+    traits::{AsFooter, MarkdownElement},
+    types::{header::Header, link::Link, list::List, paragraph::Paragraph},
+    PRELIMINARY_REMARK,
+};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use std::fmt;
+use tousize::ToUsize;
 
 #[derive(Default)]
 // #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
@@ -21,7 +20,10 @@ impl<'a> Markdown {
         Self::default()
     }
 
-    pub fn with(elements: Vec<Box<dyn MarkdownElement>>, footers: Vec<Box<dyn MarkdownElement>>) -> Self {
+    pub fn with(
+        elements: Vec<Box<dyn MarkdownElement>>,
+        footers: Vec<Box<dyn MarkdownElement>>,
+    ) -> Self {
         Self { elements, footers }
     }
 
