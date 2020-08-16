@@ -16,5 +16,6 @@
 //!     .render();
 //! ```
 
+pub mod image;
 pub mod link;
 pub mod list;

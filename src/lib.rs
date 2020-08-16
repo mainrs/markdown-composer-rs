@@ -7,11 +7,12 @@ pub mod transforms;
 pub mod types;
 pub mod utils;
 
-pub use crate::builders::{link::LinkBuilder, list::ListBuilder};
+pub use crate::builders::{image::ImageBuilder, link::LinkBuilder, list::ListBuilder};
 pub use crate::traits::MarkdownElement;
 pub use crate::transforms::Bold;
 pub use crate::types::{
     header::{Header, HeaderLevel},
+    image::{Image},
     link::Link,
     list::{List, ListItem},
     markdown::Markdown,
