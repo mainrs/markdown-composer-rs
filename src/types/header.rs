@@ -1,4 +1,4 @@
-use crate::utils::ToUsize;
+use tousize::ToUsize;
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use std::fmt;

@@ -3,8 +3,8 @@ use crate::types::header::Header;
 use crate::types::link::Link;
 use crate::types::list::List;
 use crate::types::paragraph::Paragraph;
-use crate::utils::ToUsize;
 use crate::PRELIMINARY_REMARK;
+use tousize::ToUsize;
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use std::fmt;

@@ -5,7 +5,6 @@ pub mod extensions;
 pub mod traits;
 pub mod transforms;
 pub mod types;
-pub mod utils;
 
 pub use crate::builders::{image::ImageBuilder, link::LinkBuilder, list::ListBuilder};
 pub use crate::traits::MarkdownElement;
