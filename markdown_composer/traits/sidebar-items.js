@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["MarkdownElement",""]]});
+initSidebarItems({"trait":[["AsFooter","A MarkdownElement that can be rendered as a footer value."],["MarkdownElement",""]]});

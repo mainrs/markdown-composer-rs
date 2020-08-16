@@ -38,6 +38,12 @@
 <span id="37">37</span>
 <span id="38">38</span>
 <span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">types</span>::<span class="ident">link</span>::<span class="ident">Link</span>;
 
@@ -45,6 +51,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LinkBuilder</span> {
     <span class="ident">text</span>: <span class="ident">String</span>,
     <span class="ident">url</span>: <span class="ident">String</span>,
+    <span class="ident">footer</span>: <span class="ident">bool</span>,
     <span class="ident">inlined</span>: <span class="ident">bool</span>,
 }
 
@@ -63,13 +70,18 @@
         <span class="self">self</span>
     }
 
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">footer</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">bool</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">footer</span> <span class="op">=</span> <span class="ident">value</span>;
+        <span class="self">self</span>
+    }
+
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">inlined</span>(<span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">inlined</span> <span class="op">=</span> <span class="bool-val">true</span>;
         <span class="self">self</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Link</span> {
-        <span class="ident">Link</span>::<span class="ident">from</span>(<span class="self">self</span>.<span class="ident">text</span>, <span class="self">self</span>.<span class="ident">url</span>, <span class="self">self</span>.<span class="ident">inlined</span>)
+        <span class="ident">Link</span>::<span class="ident">from</span>(<span class="self">self</span>.<span class="ident">text</span>, <span class="self">self</span>.<span class="ident">url</span>, <span class="self">self</span>.<span class="ident">footer</span>, <span class="self">self</span>.<span class="ident">inlined</span>)
     }
 }
 
