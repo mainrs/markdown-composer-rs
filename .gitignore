@@ -3,3 +3,5 @@
 
 # Ignore backup files.
 *.rs.bk
+
+Cargo.lock
