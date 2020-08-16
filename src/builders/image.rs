@@ -4,11 +4,17 @@ use crate::types::image::Image;
 pub struct ImageBuilder {
     text: String,
     url: String,
+    footer: bool,
 }
 
 impl ImageBuilder {
     pub fn new() -> Self {
         Self::default()
+    }
+
+    pub fn footer(mut self, value: bool) -> Self {
+        self.footer = value;
+        self
     }
 
     pub fn text(mut self, text: impl Into<String>) -> Self {
@@ -22,7 +28,7 @@ impl ImageBuilder {
     }
 
     pub fn build(self) -> Image {
-        Image::from(self.text, self.url)
+        Image::from(self.text, self.url, self.footer)
     }
 }
 
