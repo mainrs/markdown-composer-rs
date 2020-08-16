@@ -1,3 +1,3 @@
 (function() {var implementors = {};
-implementors["markdown_composer"] = [{"text":"impl StructuralPartialEq for LinkBuilder","synthetic":false,"types":[]},{"text":"impl StructuralPartialEq for HeaderLevel","synthetic":false,"types":[]},{"text":"impl StructuralPartialEq for Header","synthetic":false,"types":[]}];
+implementors["markdown_composer"] = [{"text":"impl StructuralPartialEq for ImageBuilder","synthetic":false,"types":[]},{"text":"impl StructuralPartialEq for LinkBuilder","synthetic":false,"types":[]},{"text":"impl StructuralPartialEq for HeaderLevel","synthetic":false,"types":[]},{"text":"impl StructuralPartialEq for Header","synthetic":false,"types":[]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

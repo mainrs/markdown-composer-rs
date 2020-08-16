@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["header",""],["link",""],["list",""],["markdown",""],["paragraph",""]]});
+initSidebarItems({"mod":[["header",""],["image",""],["link",""],["list",""],["markdown",""],["paragraph",""]]});

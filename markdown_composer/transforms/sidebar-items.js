@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["Bold",""]]});
+initSidebarItems({"trait":[["BlockQuote",""],["Bold",""],["CodeBlock",""],["Inline",""],["Italic",""]]});

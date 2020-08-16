@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["link",""],["list",""]]});
+initSidebarItems({"mod":[["image",""],["link",""],["list",""]]});

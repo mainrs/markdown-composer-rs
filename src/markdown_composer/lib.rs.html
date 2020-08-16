@@ -42,6 +42,7 @@
 <span id="41">41</span>
 <span id="42">42</span>
 <span id="43">43</span>
+<span id="44">44</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">once_cell</span>::<span class="ident">unsync</span>::<span class="ident">Lazy</span>;
 
@@ -52,11 +53,12 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">types</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">utils</span>;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">builders</span>::{<span class="ident">link</span>::<span class="ident">LinkBuilder</span>, <span class="ident">list</span>::<span class="ident">ListBuilder</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">builders</span>::{<span class="ident">image</span>::<span class="ident">ImageBuilder</span>, <span class="ident">link</span>::<span class="ident">LinkBuilder</span>, <span class="ident">list</span>::<span class="ident">ListBuilder</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">traits</span>::<span class="ident">MarkdownElement</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">transforms</span>::<span class="ident">Bold</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">types</span>::{
     <span class="ident">header</span>::{<span class="ident">Header</span>, <span class="ident">HeaderLevel</span>},
+    <span class="ident">image</span>::{<span class="ident">Image</span>},
     <span class="ident">link</span>::<span class="ident">Link</span>,
     <span class="ident">list</span>::{<span class="ident">List</span>, <span class="ident">ListItem</span>},
     <span class="ident">markdown</span>::<span class="ident">Markdown</span>,
