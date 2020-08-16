@@ -32,6 +32,12 @@
 <span id="31">31</span>
 <span id="32">32</span>
 <span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">types</span>::<span class="ident">image</span>::<span class="ident">Image</span>;
 
@@ -39,11 +45,17 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ImageBuilder</span> {
     <span class="ident">text</span>: <span class="ident">String</span>,
     <span class="ident">url</span>: <span class="ident">String</span>,
+    <span class="ident">footer</span>: <span class="ident">bool</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">ImageBuilder</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span>::<span class="ident">default</span>()
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">footer</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">bool</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">footer</span> <span class="op">=</span> <span class="ident">value</span>;
+        <span class="self">self</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
@@ -57,7 +69,7 @@
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Image</span> {
-        <span class="ident">Image</span>::<span class="ident">from</span>(<span class="self">self</span>.<span class="ident">text</span>, <span class="self">self</span>.<span class="ident">url</span>)
+        <span class="ident">Image</span>::<span class="ident">from</span>(<span class="self">self</span>.<span class="ident">text</span>, <span class="self">self</span>.<span class="ident">url</span>, <span class="self">self</span>.<span class="ident">footer</span>)
     }
 }
 
