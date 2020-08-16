@@ -4,6 +4,7 @@ use crate::types::link::Link;
 pub struct LinkBuilder {
     text: String,
     url: String,
+    footer: bool,
     inlined: bool,
 }
 
@@ -22,13 +23,18 @@ impl LinkBuilder {
         self
     }
 
+    pub fn footer(mut self, value: bool) -> Self {
+        self.footer = value;
+        self
+    }
+
     pub fn inlined(mut self) -> Self {
         self.inlined = true;
         self
     }
 
     pub fn build(self) -> Link {
-        Link::from(self.text, self.url, self.inlined)
+        Link::from(self.text, self.url, self.footer, self.inlined)
     }
 }
 

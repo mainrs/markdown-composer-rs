@@ -27,6 +27,7 @@
 use markdown_composer::builders::list::ListBuilder;
 use markdown_composer::extensions::github::CheckmarkItem;
 use markdown_composer::types::markdown::Markdown;
+use markdown_composer::Link;
 
 fn main() {
     let mut md = Markdown::with_remark();
@@ -41,6 +42,13 @@ fn main() {
                 })
                 .ordered(),
         );
-        println!("{}", md.render());
+        let link = Link::builder()
+        .footer(true)
+        .text("Hello")
+        .inlined()
+        .url("https://hello.world")
+        .build();
+        md.link(link);
     }
+    println!("{}", md);
 }

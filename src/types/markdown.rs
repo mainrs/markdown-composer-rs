@@ -1,4 +1,4 @@
-use crate::traits::MarkdownElement;
+use crate::traits::{AsFooter, MarkdownElement};
 use crate::types::header::Header;
 use crate::types::link::Link;
 use crate::types::list::List;
@@ -13,6 +13,7 @@ use std::fmt;
 // #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct Markdown {
     pub elements: Vec<Box<dyn MarkdownElement>>,
+    pub footers: Vec<Box<dyn MarkdownElement>>,
 }
 
 impl<'a> Markdown {
@@ -20,8 +21,8 @@ impl<'a> Markdown {
         Self::default()
     }
 
-    pub fn with(elements: Vec<Box<dyn MarkdownElement>>) -> Self {
-        Self { elements }
+    pub fn with(elements: Vec<Box<dyn MarkdownElement>>, footers: Vec<Box<dyn MarkdownElement>>) -> Self {
+        Self { elements, footers }
     }
 
     /// Creates a new markdown file, pre-populating it with the remark notice.
@@ -29,6 +30,7 @@ impl<'a> Markdown {
         let elements = (&*PRELIMINARY_REMARK).clone();
         Self {
             elements: elements.to_vec(),
+            ..Default::default()
         }
     }
 
@@ -74,6 +76,9 @@ impl<'a> Markdown {
     }
 
     pub fn link(&mut self, link: Link) -> &mut Self {
+        if link.footer {
+            self.footers.push(link.as_footer());
+        }
         self.elements.push(Box::new(link));
         self
     }
@@ -92,6 +97,10 @@ impl fmt::Display for Markdown {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         for element in &self.elements {
             writeln!(f, "{}", element.render())?;
+        }
+
+        for footer in &self.footers {
+            writeln!(f, "{}", footer.render())?;
         }
 
         Ok(())

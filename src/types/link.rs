@@ -1,3 +1,4 @@
+use crate::traits::{AsFooter, MarkdownElement};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use std::fmt;
@@ -7,6 +8,7 @@ use std::fmt;
 pub struct Link {
     pub text: String,
     pub url: String,
+    pub footer: bool,
     pub inlined: bool,
 }
 
@@ -15,21 +17,34 @@ impl Link {
         Self::default()
     }
 
-    pub fn from(text: impl Into<String>, url: impl Into<String>, inlined: bool) -> Self {
+    pub fn from(text: impl Into<String>, url: impl Into<String>, footer: bool, inlined: bool) -> Self {
         Self {
             text: text.into(),
             url: url.into(),
+            footer,
             inlined,
         }
     }
 }
 
+impl AsFooter for Link {
+    fn as_footer(&self) -> Box<dyn MarkdownElement> {
+        Box::new(format!("[{}]: {}", self.text, self.url))
+    }
+}
+
 impl fmt::Display for Link {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        if self.inlined {
-            write!(f, "[{}]({})", self.text, self.url)
+        let text = if self.footer {
+            format!("[{}][{}]", self.text, self.text)
         } else {
-            writeln!(f, "[{}]({})", self.text, self.url)
+            format!("[{}]({})", self.text, self.url)
+        };
+
+        if self.inlined {
+            write!(f, "{}", text)
+        } else {
+            writeln!(f, "{}", text)
         }
     }
 }
