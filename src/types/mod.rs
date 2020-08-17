@@ -1,3 +1,6 @@
+//! This module defines all Markdown types that are specified inside the
+//! CommonMark specification.
+
 pub mod header;
 pub mod image;
 pub mod link;

@@ -16,7 +16,7 @@ impl Default for HeaderLevel {
 }
 
 impl HeaderLevel {
-    /// Returns a default header level of 1.
+    /// Creates a new default header level of 1.
     pub fn new() -> Self {
         Self::default()
     }
@@ -42,7 +42,7 @@ where
     }
 }
 
-/// A header.
+/// A markdown header.
 #[derive(Clone, Debug, Default, Eq, PartialEq)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct Header {

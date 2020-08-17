@@ -2,13 +2,19 @@
 use serde::{Deserialize, Serialize};
 use std::fmt;
 
+/// A markdown paragraph.
+///
+/// A paragraph is a continuous text that is visually separated from its
+/// surrounding markdown elements.
 #[derive(Clone, Debug)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct Paragraph {
+    /// The text inside the paragraph.
     pub text: String,
 }
 
 impl Paragraph {
+    /// Creates a new paragraph with the given text.
     pub fn from(text: impl Into<String>) -> Self {
         Self { text: text.into() }
     }

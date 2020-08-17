@@ -3,19 +3,25 @@ use crate::traits::{AsFooter, MarkdownElement};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 
+/// A markdown image.
 #[derive(Clone, Debug, Default)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct Image {
+    /// Whether the image's link should be added as a footer reference.
     pub footer: bool,
+    /// The text of the image.
     pub text: String,
+    /// The url of the image.
     pub url: String,
 }
 
 impl Image {
+    /// Creates a new default `Image`.
     pub fn new() -> Self {
         Self::default()
     }
 
+    /// Creates a new `Image` with the given values.
     pub fn from(text: impl Into<String>, url: impl Into<String>, footer: bool) -> Self {
         Self {
             text: text.into(),

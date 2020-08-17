@@ -1,4 +1,5 @@
-//! Contains extension traits that can used to transform text elements into special markdown formats.
+//! Contains extension traits that can used to transform text elements into
+//! special markdown formats.
 //!
 //! The module does add support for the following transformations:
 //! - [Block quotes](trait.BlockQuote.html)
@@ -23,12 +24,16 @@ pub trait BlockQuote {
     ///
     /// # Note
     ///
-    /// Multiline quotes should be created using [block_quote_multi_line](trait.BlockQuote.html#tymethod.block_quote_multi_line) function.
+    /// Multiline quotes should be created using
+    /// [block_quote_multi_line](trait.BlockQuote.html#tymethod.
+    /// block_quote_multi_line) function.
     fn block_quote(&self) -> String;
 
     /// Transforms the given text into a multiline block quote.
     ///
-    /// This method does take newlines into account and splits the text after them to create a block quote that spans over multiple lines instead of a single one.
+    /// This method does take newlines into account and splits the text after
+    /// them to create a block quote that spans over multiple lines instead of a
+    /// single one.
     ///
     /// # Example
     ///
@@ -100,7 +105,8 @@ pub trait CodeBlock {
     /// ```
     fn code_block(&self) -> String;
 
-    /// Transforms the given text into a code block, allowing to specify the language to use for highlighting.
+    /// Transforms the given text into a code block, allowing to specify the
+    /// language to use for highlighting.
     ///
     /// # Example
     ///

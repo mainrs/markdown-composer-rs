@@ -1,10 +1,12 @@
 //! Contains builders for all Markdown content types.
 //!
-//! The API provides inside this module can be used to declare Markdown files in
+//! The API provided inside this module can be used to declare Markdown files in
 //! an imperative style:
 //!
-//! ```rust,norun
-//! let rendered = Markdown::builder()
+//! ```rust
+//! use markdown_composer::{Link, List, Markdown};
+//!
+//! let rendered = Markdown::new()
 //!     .header1("Header 1")
 //!     .paragraph("Some text that gets displayed")
 //!     .list(List::builder()
@@ -13,7 +15,10 @@
 //!         .add("Item 3")
 //!         .ordered())
 //!     .header2("Sub Header 1")
-//!     .link("placeholder", "https://github.com")
+//!     .link(Link::builder()
+//!         .text("Hello world examles")
+//!         .url("https://hello.world")
+//!         .build())
 //!     .render();
 //! ```
 
