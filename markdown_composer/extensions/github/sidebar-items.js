@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["CheckmarkItem",""]],"trait":[["Strikethrough",""]]});
+initSidebarItems({"struct":[["CheckmarkItem","A checkbox list item."]],"trait":[["Strikethrough","An extension trait for strikethrough transformations."]]});

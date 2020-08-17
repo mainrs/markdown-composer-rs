@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Paragraph",""]]});
+initSidebarItems({"struct":[["Paragraph","A markdown paragraph."]]});

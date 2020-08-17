@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["BlockQuote",""],["Bold",""],["CodeBlock",""],["Inline",""],["Italic",""]]});
+initSidebarItems({"trait":[["BlockQuote","An extension trait for block quote transformation."],["Bold","An extension trait for bold transformations."],["CodeBlock","An extension trait for code block transformations."],["Inline","An extension trait for inline transformations."],["Italic","An extension trait for italic transformations."]]});

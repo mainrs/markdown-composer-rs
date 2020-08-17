@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Header","A header."],["HeaderLevel","The level of a header."]]});
+initSidebarItems({"struct":[["Header","A markdown header."],["HeaderLevel","The level of a header."]]});

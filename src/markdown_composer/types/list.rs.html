@@ -72,26 +72,48 @@
 <span id="71">71</span>
 <span id="72">72</span>
 <span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">traits</span>::<span class="ident">MarkdownElement</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
 
+<span class="doccomment">/// An item inside a markdown list.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ListItem</span> <span class="op">=</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">MarkdownElement</span><span class="op">&gt;</span>;
 
+<span class="doccomment">/// A markdown list.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
 <span class="comment">// #[cfg_attr(feature = &quot;serde&quot;, derive(Deserialize, Serialize))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">List</span> {
+    <span class="doccomment">/// The items of the list.</span>
     <span class="kw">pub</span> <span class="ident">items</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ListItem</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// `True` if the list should be ordered.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Ordered lists use numbers instead of dots as the enumeration character.</span>
     <span class="kw">pub</span> <span class="ident">ordered</span>: <span class="ident">bool</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">List</span> {
+    <span class="doccomment">/// Creates a new default `List`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span>::<span class="ident">default</span>()
     }
 
+    <span class="doccomment">/// Creates a new empty ordered `List`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ordered</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">ordered</span>: <span class="bool-val">true</span>,
@@ -99,6 +121,7 @@
         }
     }
 
+    <span class="doccomment">/// Creates a new ordered `List` with the given items.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ordered_with</span>(<span class="ident">items</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ListItem</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">items</span>,
@@ -106,6 +129,7 @@
         }
     }
 
+    <span class="doccomment">/// Creates a new empty unordered `List`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unordered</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">ordered</span>: <span class="bool-val">false</span>,
@@ -113,6 +137,7 @@
         }
     }
 
+    <span class="doccomment">/// Creates a new unordered list with the given items.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unordered_with</span>(<span class="ident">items</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ListItem</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">items</span>,
@@ -120,6 +145,7 @@
         }
     }
 
+    <span class="doccomment">/// Adds an item to the list.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">item</span>: <span class="ident">ListItem</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">items</span>.<span class="ident">push</span>(<span class="ident">item</span>);
         <span class="self">self</span>
@@ -141,6 +167,8 @@
     }
 }
 
+<span class="comment">// INVESTIGATE: Is this good design? Makes the API a little bit easier to use by</span>
+<span class="comment">// not having to explicitly clone.</span>
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">List</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">List</span> {
     <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">List</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="ident">value</span>.<span class="ident">clone</span>()

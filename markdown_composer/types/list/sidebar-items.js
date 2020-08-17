@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["List",""]],"type":[["ListItem",""]]});
+initSidebarItems({"struct":[["List","A markdown list."]],"type":[["ListItem","An item inside a markdown list."]]});

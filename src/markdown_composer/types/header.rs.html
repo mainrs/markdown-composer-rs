@@ -122,7 +122,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">HeaderLevel</span> {
-    <span class="doccomment">/// Returns a default header level of 1.</span>
+    <span class="doccomment">/// Creates a new default header level of 1.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span>::<span class="ident">default</span>()
     }
@@ -148,7 +148,7 @@
     }
 }
 
-<span class="doccomment">/// A header.</span>
+<span class="doccomment">/// A markdown header.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Header</span> {

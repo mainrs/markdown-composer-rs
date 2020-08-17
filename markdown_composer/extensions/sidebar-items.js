@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["github",""]]});
+initSidebarItems({"mod":[["github","Markdown extensions defined by GitHub."]]});

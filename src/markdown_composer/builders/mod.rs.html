@@ -21,14 +21,21 @@
 <span id="20">20</span>
 <span id="21">21</span>
 <span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Contains builders for all Markdown content types.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! The API provides inside this module can be used to declare Markdown files in</span>
+<span class="doccomment">//! The API provided inside this module can be used to declare Markdown files in</span>
 <span class="doccomment">//! an imperative style:</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! ```rust,norun</span>
-<span class="doccomment">//! let rendered = Markdown::builder()</span>
+<span class="doccomment">//! ```rust</span>
+<span class="doccomment">//! use markdown_composer::{Link, List, Markdown};</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! let rendered = Markdown::new()</span>
 <span class="doccomment">//!     .header1(&quot;Header 1&quot;)</span>
 <span class="doccomment">//!     .paragraph(&quot;Some text that gets displayed&quot;)</span>
 <span class="doccomment">//!     .list(List::builder()</span>
@@ -37,7 +44,10 @@
 <span class="doccomment">//!         .add(&quot;Item 3&quot;)</span>
 <span class="doccomment">//!         .ordered())</span>
 <span class="doccomment">//!     .header2(&quot;Sub Header 1&quot;)</span>
-<span class="doccomment">//!     .link(&quot;placeholder&quot;, &quot;https://github.com&quot;)</span>
+<span class="doccomment">//!     .link(Link::builder()</span>
+<span class="doccomment">//!         .text(&quot;Hello world examles&quot;)</span>
+<span class="doccomment">//!         .url(&quot;https://hello.world&quot;)</span>
+<span class="doccomment">//!         .build())</span>
 <span class="doccomment">//!     .render();</span>
 <span class="doccomment">//! ```</span>
 

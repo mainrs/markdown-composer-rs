@@ -36,20 +36,54 @@
 <span id="35">35</span>
 <span id="36">36</span>
 <span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
+<span id="60">60</span>
 </pre><div class="example-wrap"><pre class="rust ">
+<span class="doccomment">//! Markdown extensions defined by GitHub.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! The full specification can be found at https://github.github.com/gfm/.</span>
+
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
 
+<span class="doccomment">/// A checkbox list item.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CheckmarkItem</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// The state of the item.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// `True` if the item is checked, `false` otherwise.</span>
     <span class="kw">pub</span> <span class="ident">checked</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// The text of the checkbox item.</span>
     <span class="kw">pub</span> <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">CheckmarkItem</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// Creates a new default checkmark item.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span>::<span class="ident">default</span>()
     }
 
+    <span class="doccomment">/// Creates a mew checkmark item with the given values.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>, <span class="ident">checked</span>: <span class="ident">bool</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> { <span class="ident">text</span>, <span class="ident">checked</span> }
     }
@@ -62,7 +96,19 @@
     }
 }
 
+<span class="doccomment">/// An extension trait for strikethrough transformations.</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Strikethrough</span> {
+    <span class="doccomment">/// Transforms the given text to be strikethrough.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Example</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ```rust</span>
+    <span class="doccomment">/// use markdown_composer::extensions::github::Strikethrough;</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// let text = &quot;text&quot;;</span>
+    <span class="doccomment">/// let striked = text.strikethrough();</span>
+    <span class="doccomment">/// assert_eq!(striked, &quot;~text~&quot;);</span>
+    <span class="doccomment">/// ```</span>
     <span class="kw">fn</span> <span class="ident">strikethrough</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
 }
 
