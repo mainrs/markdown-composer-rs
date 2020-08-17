@@ -44,17 +44,17 @@ pub trait Strikethrough {
     /// use markdown_composer::extensions::github::Strikethrough;
     ///
     /// let text = "text";
-    /// let striked = text.strikethrough();
+    /// let striked = text.to_strikethrough();
     /// assert_eq!(striked, "~text~");
     /// ```
-    fn strikethrough(&self) -> String;
+    fn to_strikethrough(&self) -> String;
 }
 
 impl<T> Strikethrough for T
 where
     T: AsRef<str>,
 {
-    fn strikethrough(&self) -> String {
+    fn to_strikethrough(&self) -> String {
         format!("~{}~", self.as_ref())
     }
 }
