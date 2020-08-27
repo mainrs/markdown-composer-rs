@@ -106,17 +106,17 @@
     <span class="doccomment">/// use markdown_composer::extensions::github::Strikethrough;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// let text = &quot;text&quot;;</span>
-    <span class="doccomment">/// let striked = text.strikethrough();</span>
+    <span class="doccomment">/// let striked = text.to_strikethrough();</span>
     <span class="doccomment">/// assert_eq!(striked, &quot;~text~&quot;);</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">fn</span> <span class="ident">strikethrough</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
+    <span class="kw">fn</span> <span class="ident">to_strikethrough</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Strikethrough</span> <span class="kw">for</span> <span class="ident">T</span>
 <span class="kw">where</span>
     <span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>,
 {
-    <span class="kw">fn</span> <span class="ident">strikethrough</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="kw">fn</span> <span class="ident">to_strikethrough</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
         <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;~{}~&quot;</span>, <span class="self">self</span>.<span class="ident">as_ref</span>())
     }
 }

@@ -254,7 +254,7 @@
     <span class="doccomment">/// use markdown_composer::transforms::BlockQuote;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// let text = &quot;To quote&quot;;</span>
-    <span class="doccomment">/// let quoted = text.block_quote();</span>
+    <span class="doccomment">/// let quoted = text.to_block_quote();</span>
     <span class="doccomment">/// assert_eq!(quoted, &quot;&gt; To quote&quot;);</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
@@ -263,7 +263,7 @@
     <span class="doccomment">/// Multiline quotes should be created using</span>
     <span class="doccomment">/// [block_quote_multi_line](trait.BlockQuote.html#tymethod.</span>
     <span class="doccomment">/// block_quote_multi_line) function.</span>
-    <span class="kw">fn</span> <span class="ident">block_quote</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
+    <span class="kw">fn</span> <span class="ident">to_block_quote</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
 
     <span class="doccomment">/// Transforms the given text into a multiline block quote.</span>
     <span class="doccomment">///</span>
@@ -277,21 +277,21 @@
     <span class="doccomment">/// use markdown_composer::transforms::BlockQuote;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// let text = &quot;To quote\nor not to quote&quot;;</span>
-    <span class="doccomment">/// let quoted = text.block_quote_multi_line();</span>
+    <span class="doccomment">/// let quoted = text.to_block_quote_multi_line();</span>
     <span class="doccomment">/// assert_eq!(quoted, &quot;&gt; To quote\n&gt; or not to quote&quot;);</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">fn</span> <span class="ident">block_quote_multi_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
+    <span class="kw">fn</span> <span class="ident">to_block_quote_multi_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">BlockQuote</span> <span class="kw">for</span> <span class="ident">T</span>
 <span class="kw">where</span>
     <span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>,
 {
-    <span class="kw">fn</span> <span class="ident">block_quote</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="kw">fn</span> <span class="ident">to_block_quote</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
         <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;&gt; {}&quot;</span>, <span class="self">self</span>.<span class="ident">as_ref</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">block_quote_multi_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="kw">fn</span> <span class="ident">to_block_quote_multi_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">lines</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">new</span>();
         <span class="kw">for</span> <span class="ident">line</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">lines</span>() {
             <span class="kw">let</span> <span class="ident">quoted</span> <span class="op">=</span> <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;&gt; {}&quot;</span>, <span class="ident">line</span>);
@@ -311,17 +311,17 @@
     <span class="doccomment">/// use markdown_composer::transforms::Bold;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// let text = &quot;To bold&quot;;</span>
-    <span class="doccomment">/// let bold = text.bold();</span>
+    <span class="doccomment">/// let bold = text.to_bold();</span>
     <span class="doccomment">/// assert_eq!(bold, &quot;**To bold**&quot;);</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">fn</span> <span class="ident">bold</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
+    <span class="kw">fn</span> <span class="ident">to_bold</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Bold</span> <span class="kw">for</span> <span class="ident">T</span>
 <span class="kw">where</span>
     <span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>,
 {
-    <span class="kw">fn</span> <span class="ident">bold</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="kw">fn</span> <span class="ident">to_bold</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
         <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;**{}**&quot;</span>, <span class="self">self</span>.<span class="ident">as_ref</span>())
     }
 }
@@ -336,10 +336,10 @@
     <span class="doccomment">/// use markdown_composer::transforms::CodeBlock;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// let text = &quot;print(\&quot;Hello world!\&quot;)&quot;;</span>
-    <span class="doccomment">/// let code_block = text.code_block();</span>
+    <span class="doccomment">/// let code_block = text.to_code_block();</span>
     <span class="doccomment">/// assert_eq!(code_block, &quot;```\nprint(\&quot;Hello world!\&quot;)\n```&quot;);</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">fn</span> <span class="ident">code_block</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
+    <span class="kw">fn</span> <span class="ident">to_code_block</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
 
     <span class="doccomment">/// Transforms the given text into a code block, allowing to specify the</span>
     <span class="doccomment">/// language to use for highlighting.</span>
@@ -350,21 +350,21 @@
     <span class="doccomment">/// use markdown_composer::transforms::CodeBlock;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// let text = &quot;print(\&quot;Hello world!\&quot;)&quot;;</span>
-    <span class="doccomment">/// let code_block = text.code_block_with_language(&quot;python&quot;);</span>
+    <span class="doccomment">/// let code_block = text.to_code_block_with_language(&quot;python&quot;);</span>
     <span class="doccomment">/// assert_eq!(code_block, &quot;```python\nprint(\&quot;Hello world!\&quot;)\n```&quot;);</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">fn</span> <span class="ident">code_block_with_language</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">language</span>: <span class="ident">S</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
+    <span class="kw">fn</span> <span class="ident">to_code_block_with_language</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">language</span>: <span class="ident">S</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">CodeBlock</span> <span class="kw">for</span> <span class="ident">T</span>
 <span class="kw">where</span>
     <span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>,
 {
-    <span class="kw">fn</span> <span class="ident">code_block</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="kw">fn</span> <span class="ident">to_code_block</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
         <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;```\n{}\n```&quot;</span>, <span class="self">self</span>.<span class="ident">as_ref</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">code_block_with_language</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">language</span>: <span class="ident">S</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="kw">fn</span> <span class="ident">to_code_block_with_language</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">language</span>: <span class="ident">S</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
         <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;```{}\n{}\n```&quot;</span>, <span class="ident">language</span>.<span class="ident">as_ref</span>(), <span class="self">self</span>.<span class="ident">as_ref</span>())
     }
 }
@@ -379,17 +379,17 @@
     <span class="doccomment">/// use markdown_composer::transforms::Inline;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// let text = &quot;Inline text&quot;;</span>
-    <span class="doccomment">/// let inline = text.inline();</span>
+    <span class="doccomment">/// let inline = text.to_inline();</span>
     <span class="doccomment">/// assert_eq!(inline, &quot;`Inline text`&quot;);</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">fn</span> <span class="ident">inline</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
+    <span class="kw">fn</span> <span class="ident">to_inline</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Inline</span> <span class="kw">for</span> <span class="ident">T</span>
 <span class="kw">where</span>
     <span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>,
 {
-    <span class="kw">fn</span> <span class="ident">inline</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="kw">fn</span> <span class="ident">to_inline</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
         <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;`{}`&quot;</span>, <span class="self">self</span>.<span class="ident">as_ref</span>())
     }
 }
@@ -404,17 +404,17 @@
     <span class="doccomment">/// use markdown_composer::transforms::Italic;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// let text = &quot;Italic text&quot;;</span>
-    <span class="doccomment">/// let inline = text.italic();</span>
+    <span class="doccomment">/// let inline = text.to_italic();</span>
     <span class="doccomment">/// assert_eq!(inline, &quot;*Italic text*&quot;);</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">fn</span> <span class="ident">italic</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
+    <span class="kw">fn</span> <span class="ident">to_italic</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Italic</span> <span class="kw">for</span> <span class="ident">T</span>
 <span class="kw">where</span>
     <span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>,
 {
-    <span class="kw">fn</span> <span class="ident">italic</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="kw">fn</span> <span class="ident">to_italic</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
         <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;*{}*&quot;</span>, <span class="self">self</span>.<span class="ident">as_ref</span>())
     }
 }
@@ -428,7 +428,7 @@
         <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="string">&quot;This is a single line block quote&quot;</span>;
         <span class="kw">let</span> <span class="ident">expected</span> <span class="op">=</span> <span class="string">&quot;&gt; This is a single line block quote&quot;</span>;
 
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">expected</span>, <span class="ident">text</span>.<span class="ident">block_quote</span>());
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">expected</span>, <span class="ident">text</span>.<span class="ident">to_block_quote</span>());
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -436,36 +436,36 @@
         <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="string">&quot;This is a single line block quote\nThis is the second line&quot;</span>;
         <span class="kw">let</span> <span class="ident">expected</span> <span class="op">=</span> <span class="string">&quot;&gt; This is a single line block quote\n&gt; This is the second line&quot;</span>;
 
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">expected</span>, <span class="ident">text</span>.<span class="ident">block_quote_multi_line</span>());
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">expected</span>, <span class="ident">text</span>.<span class="ident">to_block_quote_multi_line</span>());
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_bold</span>() {
         <span class="comment">// &amp;str</span>
         <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="string">&quot;text&quot;</span>;
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="string">&quot;**text**&quot;</span>, <span class="ident">text</span>.<span class="ident">bold</span>());
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="string">&quot;**text**&quot;</span>, <span class="ident">text</span>.<span class="ident">to_bold</span>());
 
         <span class="comment">// String</span>
         <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;text&quot;</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;**text**&quot;</span>), <span class="ident">text</span>.<span class="ident">bold</span>());
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;**text**&quot;</span>), <span class="ident">text</span>.<span class="ident">to_bold</span>());
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_inline</span>() {
         <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="string">&quot;text&quot;</span>;
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="string">&quot;`text`&quot;</span>, <span class="ident">text</span>.<span class="ident">inline</span>());
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="string">&quot;`text`&quot;</span>, <span class="ident">text</span>.<span class="ident">to_inline</span>());
 
         <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;text&quot;</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;`text`&quot;</span>), <span class="ident">text</span>.<span class="ident">inline</span>());
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;`text`&quot;</span>), <span class="ident">text</span>.<span class="ident">to_inline</span>());
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_italic</span>() {
         <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="string">&quot;text&quot;</span>;
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="string">&quot;*text*&quot;</span>, <span class="ident">text</span>.<span class="ident">italic</span>());
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="string">&quot;*text*&quot;</span>, <span class="ident">text</span>.<span class="ident">to_italic</span>());
 
         <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;text&quot;</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;*text*&quot;</span>), <span class="ident">text</span>.<span class="ident">italic</span>());
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;*text*&quot;</span>), <span class="ident">text</span>.<span class="ident">to_italic</span>());
     }
 }
 </pre></div>
