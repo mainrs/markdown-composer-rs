@@ -1,7 +1,6 @@
 use crate::{
     traits::{AsFooter, MarkdownElement},
     types::{header::Header, link::Link, list::List, paragraph::Paragraph},
-    PRELIMINARY_REMARK,
 };
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -25,15 +24,6 @@ impl<'a> Markdown {
         footers: Vec<Box<dyn MarkdownElement>>,
     ) -> Self {
         Self { elements, footers }
-    }
-
-    /// Creates a new markdown file, pre-populating it with the remark notice.
-    pub fn with_remark() -> Self {
-        let elements = (&*PRELIMINARY_REMARK).clone();
-        Self {
-            elements: elements.to_vec(),
-            ..Default::default()
-        }
     }
 
     pub fn header(&mut self, text: impl Into<String>, level: impl ToUsize) -> &mut Self {
