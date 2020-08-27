@@ -13,11 +13,11 @@ pub trait AsFooter {
 /// An element that can be rendered as to markdown.
 #[clonable]
 pub trait MarkdownElement: Clone + fmt::Debug {
-    /// Renders the element to mardown.
+    /// Renders the element to markdown.
     fn render(&self) -> String;
 }
 
-/// Implementated for all types that do implement `Display`.
+/// Implemented for all types that do implement `Display`.
 ///
 /// The implementation calls the `Display::fmt` method.
 impl<T> MarkdownElement for T

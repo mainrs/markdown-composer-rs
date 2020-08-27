@@ -25,7 +25,7 @@ impl HeaderLevel {
     ///
     /// # Panics
     ///
-    /// Panics if level is not in the range of one to six (inclusive).
+    /// Panics if the header level is not valid (one to six inclusive).
     pub fn from(level: impl ToUsize) -> Self {
         let level = level.to_usize();
         assert!(1 <= level && level <= 6);
@@ -62,7 +62,7 @@ impl Header {
     ///
     /// # Panics
     ///
-    /// Panics if `level` is not in the range of one to six (inclusive).
+    /// Panics if the header level is not valid (one to six inclusive).
     pub fn from(text: impl Into<String>, level: impl Into<HeaderLevel>) -> Self {
         Self {
             text: text.into(),

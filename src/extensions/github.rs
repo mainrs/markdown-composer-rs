@@ -4,14 +4,14 @@
 
 use std::fmt;
 
-/// A checkbox list item.
+/// A checkmark list item.
 #[derive(Clone, Debug, Default)]
 pub struct CheckmarkItem<'a> {
     /// The state of the item.
     ///
     /// `True` if the item is checked, `false` otherwise.
     pub checked: bool,
-    /// The text of the checkbox item.
+    /// The text of the checkmark item.
     pub text: &'a str,
 }
 
