@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Markdown",""]]});
+initSidebarItems({"struct":[["Markdown","A markdown document."]]});

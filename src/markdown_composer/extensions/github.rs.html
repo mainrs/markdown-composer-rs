@@ -66,14 +66,14 @@
 
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
 
-<span class="doccomment">/// A checkbox list item.</span>
+<span class="doccomment">/// A checkmark list item.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CheckmarkItem</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The state of the item.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `True` if the item is checked, `false` otherwise.</span>
     <span class="kw">pub</span> <span class="ident">checked</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// The text of the checkbox item.</span>
+    <span class="doccomment">/// The text of the checkmark item.</span>
     <span class="kw">pub</span> <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
 }
 

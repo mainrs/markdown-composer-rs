@@ -99,6 +99,73 @@
 <span id="98"> 98</span>
 <span id="99"> 99</span>
 <span id="100">100</span>
+<span id="101">101</span>
+<span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">traits</span>::{<span class="ident">AsFooter</span>, <span class="ident">MarkdownElement</span>},
@@ -109,18 +176,23 @@
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
 <span class="kw">use</span> <span class="ident">tousize</span>::<span class="ident">ToUsize</span>;
 
+<span class="doccomment">/// A markdown document.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
 <span class="comment">// #[cfg_attr(feature = &quot;serde&quot;, derive(Deserialize, Serialize))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Markdown</span> {
+    <span class="doccomment">/// The markdown elements.</span>
     <span class="kw">pub</span> <span class="ident">elements</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">MarkdownElement</span><span class="op">&gt;&gt;</span>,
+    <span class="doccomment">/// The markdown footer elements.</span>
     <span class="kw">pub</span> <span class="ident">footers</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">MarkdownElement</span><span class="op">&gt;&gt;</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Markdown</span> {
+    <span class="doccomment">/// Creates a new default `Markdown` instance.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span>::<span class="ident">default</span>()
     }
 
+    <span class="doccomment">/// Creates a new `Markdown` instance with the given elements and footers.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with</span>(
         <span class="ident">elements</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">MarkdownElement</span><span class="op">&gt;&gt;</span>,
         <span class="ident">footers</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">MarkdownElement</span><span class="op">&gt;&gt;</span>,
@@ -128,47 +200,101 @@
         <span class="self">Self</span> { <span class="ident">elements</span>, <span class="ident">footers</span> }
     }
 
+    <span class="doccomment">/// Adds a header to the document.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Arguments</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// - `text`: The header&#39;s text.</span>
+    <span class="doccomment">/// - `level`: The header&#39;s level.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Panics</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Panics if the header level is not valid (one to six inclusive).</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">header</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">level</span>: <span class="kw">impl</span> <span class="ident">ToUsize</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">header</span> <span class="op">=</span> <span class="ident">Header</span>::<span class="ident">from</span>(<span class="ident">text</span>, <span class="ident">level</span>);
         <span class="self">self</span>.<span class="ident">elements</span>.<span class="ident">push</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">header</span>));
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Adds a header with level 1 to the document.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Arguments</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// - `text`: The header&#39;s text.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">header1</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">header</span>(<span class="ident">text</span>, <span class="number">1usize</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Adds a header with level 2 to the document.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Arguments</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// - `text`: The header&#39;s text.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">header2</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">header</span>(<span class="ident">text</span>, <span class="number">2usize</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Adds a header with level 3 to the document.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Arguments</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// - `text`: The header&#39;s text.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">header3</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">header</span>(<span class="ident">text</span>, <span class="number">3usize</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Adds a header with level 4 to the document.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Arguments</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// - `text`: The header&#39;s text.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">header4</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">header</span>(<span class="ident">text</span>, <span class="number">4usize</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Adds a header with level 5 to the document.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Arguments</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// - `text`: The header&#39;s text.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">header5</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">header</span>(<span class="ident">text</span>, <span class="number">5usize</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Adds a header with level 6 to the document.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Arguments</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// - `text`: The header&#39;s text.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">header6</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">header</span>(<span class="ident">text</span>, <span class="number">6usize</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Adds a list to the document.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Arguments</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// - `list`: The list instance to add.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">list</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">list</span>: <span class="ident">List</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">elements</span>.<span class="ident">push</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">list</span>));
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Adds a link to the document.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Arguments</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// - `link`: The link instance to add.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Note</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The associated footer element is added as well if the passed link is marked as footer.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">link</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">link</span>: <span class="ident">Link</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
         <span class="kw">if</span> <span class="ident">link</span>.<span class="ident">footer</span> {
             <span class="self">self</span>.<span class="ident">footers</span>.<span class="ident">push</span>(<span class="ident">link</span>.<span class="ident">as_footer</span>());
@@ -177,11 +303,19 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Adds a paragraph to the document.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Arguments</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// - `text`: The paragraph&#39;s text.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">paragraph</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">elements</span>.<span class="ident">push</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">Paragraph</span>::<span class="ident">from</span>(<span class="ident">text</span>)));
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Renders the markdown document to a `String`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The method does render each [element](struct.Markdown.structfield.elements) in order, followed by each [footer](struct.Markdown.structfield.footers).</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
         <span class="self">self</span>.<span class="ident">to_string</span>()
     }

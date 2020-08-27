@@ -55,11 +55,11 @@
 <span class="doccomment">/// An element that can be rendered as to markdown.</span>
 <span class="attribute">#[<span class="ident">clonable</span>]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">MarkdownElement</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> {
-    <span class="doccomment">/// Renders the element to mardown.</span>
+    <span class="doccomment">/// Renders the element to markdown.</span>
     <span class="kw">fn</span> <span class="ident">render</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
 }
 
-<span class="doccomment">/// Implementated for all types that do implement `Display`.</span>
+<span class="doccomment">/// Implemented for all types that do implement `Display`.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// The implementation calls the `Display::fmt` method.</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">MarkdownElement</span> <span class="kw">for</span> <span class="ident">T</span>
