@@ -18,5 +18,5 @@ pub use crate::{
     },
 };
 
-#[cfg(feature = "github")]
+#[cfg(feature = "extension-github")]
 pub use crate::extensions::github::CheckmarkItem;

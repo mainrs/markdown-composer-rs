@@ -9,8 +9,8 @@ authors = ["Sven Lechner <SirWindfield@users.noreply.github.com>"]
 edition = "2018"
 
 [features]
-default = ["github"]
-github = []
+default = ["extension-github"]
+extension-github = []
 
 [dependencies]
 dyn-clonable = "0.9.0"
