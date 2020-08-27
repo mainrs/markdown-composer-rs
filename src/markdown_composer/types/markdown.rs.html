@@ -99,21 +99,10 @@
 <span id="98"> 98</span>
 <span id="99"> 99</span>
 <span id="100">100</span>
-<span id="101">101</span>
-<span id="102">102</span>
-<span id="103">103</span>
-<span id="104">104</span>
-<span id="105">105</span>
-<span id="106">106</span>
-<span id="107">107</span>
-<span id="108">108</span>
-<span id="109">109</span>
-<span id="110">110</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">traits</span>::{<span class="ident">AsFooter</span>, <span class="ident">MarkdownElement</span>},
     <span class="ident">types</span>::{<span class="ident">header</span>::<span class="ident">Header</span>, <span class="ident">link</span>::<span class="ident">Link</span>, <span class="ident">list</span>::<span class="ident">List</span>, <span class="ident">paragraph</span>::<span class="ident">Paragraph</span>},
-    <span class="ident">PRELIMINARY_REMARK</span>,
 };
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
@@ -137,15 +126,6 @@
         <span class="ident">footers</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">MarkdownElement</span><span class="op">&gt;&gt;</span>,
     ) <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> { <span class="ident">elements</span>, <span class="ident">footers</span> }
-    }
-
-    <span class="doccomment">/// Creates a new markdown file, pre-populating it with the remark notice.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_remark</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">elements</span> <span class="op">=</span> (<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">PRELIMINARY_REMARK</span>).<span class="ident">clone</span>();
-        <span class="self">Self</span> {
-            <span class="ident">elements</span>: <span class="ident">elements</span>.<span class="ident">to_vec</span>(),
-            ..<span class="ident">Default</span>::<span class="ident">default</span>()
-        }
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">header</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">level</span>: <span class="kw">impl</span> <span class="ident">ToUsize</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {

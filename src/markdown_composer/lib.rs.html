@@ -21,32 +21,7 @@
 <span id="20">20</span>
 <span id="21">21</span>
 <span id="22">22</span>
-<span id="23">23</span>
-<span id="24">24</span>
-<span id="25">25</span>
-<span id="26">26</span>
-<span id="27">27</span>
-<span id="28">28</span>
-<span id="29">29</span>
-<span id="30">30</span>
-<span id="31">31</span>
-<span id="32">32</span>
-<span id="33">33</span>
-<span id="34">34</span>
-<span id="35">35</span>
-<span id="36">36</span>
-<span id="37">37</span>
-<span id="38">38</span>
-<span id="39">39</span>
-<span id="40">40</span>
-<span id="41">41</span>
-<span id="42">42</span>
-<span id="43">43</span>
-<span id="44">44</span>
-<span id="45">45</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="ident">once_cell</span>::<span class="ident">unsync</span>::<span class="ident">Lazy</span>;
-
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">builders</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">extensions</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">traits</span>;
@@ -67,28 +42,7 @@
     },
 };
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;github&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;extension-github&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">extensions</span>::<span class="ident">github</span>::<span class="ident">CheckmarkItem</span>;
-
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PRELIMINARY_REMARK</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">MarkdownElement</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> {
-    <span class="kw">let</span> <span class="ident">keep_a_changelog_link</span> <span class="op">=</span> <span class="ident">Link</span>::<span class="ident">builder</span>()
-        .<span class="ident">text</span>(<span class="string">&quot;Keep a Changelog&quot;</span>)
-        .<span class="ident">url</span>(<span class="string">&quot;https://keepachangelog.com/en/1.0.0/&quot;</span>)
-        .<span class="ident">inlined</span>()
-        .<span class="ident">build</span>();
-    <span class="kw">let</span> <span class="ident">semantic_versioning_link</span> <span class="op">=</span> <span class="ident">Link</span>::<span class="ident">builder</span>()
-        .<span class="ident">text</span>(<span class="string">&quot;Semantic Versioning&quot;</span>)
-        .<span class="ident">url</span>(<span class="string">&quot;https://semver.org/spec/v2.0.0.html&quot;</span>)
-        .<span class="ident">inlined</span>()
-        .<span class="ident">build</span>();
-
-    <span class="kw">let</span> <span class="ident">paragraph1</span> <span class="op">=</span> <span class="string">&quot;All notable changes to this project will be documented in this file.&quot;</span>;
-    <span class="kw">let</span> <span class="ident">paragraph2</span> <span class="op">=</span> <span class="macro">format</span><span class="macro">!</span>(
-        <span class="string">&quot;The format is based on {}, and this project adheres to {}.&quot;</span>,
-        <span class="ident">keep_a_changelog_link</span>, <span class="ident">semantic_versioning_link</span>
-    );
-
-    <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">paragraph1</span>), <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">paragraph2</span>)]
-});
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "markdown_composer";</script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
