@@ -1,3 +1,24 @@
+//! `markdown-composer` helps you to create Markdown documents using Rust code.
+//!
+//! The main API involves around using builders to create structured Markdown
+//! elements that can be combined together into a Markdown document
+//!
+//! ```rust,norun
+//! use markdown_composer::{Link, Markdown};
+//!
+//! let link = Link::builder()
+//!     .text("Hello World")
+//!     .url("https://hello.world")
+//!     .build();
+//!
+//! let md = Markdown::new()
+//!     .header1("First level header")
+//!     .paragraph("Some standalone paragraph")
+//!     .link(link)
+//!     .paragraph("Some other paragraph");
+//! let rendered = md.render();
+//! ```
+
 pub mod builders;
 pub mod extensions;
 pub mod traits;
