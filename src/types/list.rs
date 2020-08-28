@@ -132,7 +132,6 @@ impl List {
             items,
             marker: ListItemMarker::Numbered(NumberedListItemMarkerSeparator::default()),
             ty: ListType::Ordered,
-            ..Default::default()
         }
     }
 
