@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["List","A markdown list."]],"type":[["ListItem","An item inside a markdown list."]]});
+initSidebarItems({"enum":[["ListItemMarker","The marker used to indicate the start of a `ListItem`."],["ListType","The type of list."],["NumberedListItemMarkerSeparator","The separator used to separate the list item number and the item content."]],"struct":[["List","A markdown list."]],"type":[["ListItem","An item inside a markdown list."]]});

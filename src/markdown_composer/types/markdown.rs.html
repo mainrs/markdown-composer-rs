@@ -166,6 +166,9 @@
 <span id="165">165</span>
 <span id="166">166</span>
 <span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">traits</span>::{<span class="ident">AsFooter</span>, <span class="ident">MarkdownElement</span>},
@@ -294,7 +297,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Note</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The associated footer element is added as well if the passed link is marked as footer.</span>
+    <span class="doccomment">/// The associated footer element is added as well if the passed link is</span>
+    <span class="doccomment">/// marked as footer.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">link</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">link</span>: <span class="ident">Link</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
         <span class="kw">if</span> <span class="ident">link</span>.<span class="ident">footer</span> {
             <span class="self">self</span>.<span class="ident">footers</span>.<span class="ident">push</span>(<span class="ident">link</span>.<span class="ident">as_footer</span>());
@@ -315,7 +319,9 @@
 
     <span class="doccomment">/// Renders the markdown document to a `String`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The method does render each [element](struct.Markdown.structfield.elements) in order, followed by each [footer](struct.Markdown.structfield.footers).</span>
+    <span class="doccomment">/// The method does render each</span>
+    <span class="doccomment">/// [element](struct.Markdown.structfield.elements) in order, followed by</span>
+    <span class="doccomment">/// each [footer](struct.Markdown.structfield.footers).</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
         <span class="self">self</span>.<span class="ident">to_string</span>()
     }
