@@ -125,7 +125,8 @@ impl<'a> Markdown {
     ///
     /// # Note
     ///
-    /// The associated footer element is added as well if the passed link is marked as footer.
+    /// The associated footer element is added as well if the passed link is
+    /// marked as footer.
     pub fn link(&mut self, link: Link) -> &mut Self {
         if link.footer {
             self.footers.push(link.as_footer());
@@ -146,7 +147,9 @@ impl<'a> Markdown {
 
     /// Renders the markdown document to a `String`.
     ///
-    /// The method does render each [element](struct.Markdown.structfield.elements) in order, followed by each [footer](struct.Markdown.structfield.footers).
+    /// The method does render each
+    /// [element](struct.Markdown.structfield.elements) in order, followed by
+    /// each [footer](struct.Markdown.structfield.footers).
     pub fn render(&self) -> String {
         self.to_string()
     }
