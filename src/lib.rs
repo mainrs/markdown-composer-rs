@@ -12,7 +12,7 @@ pub use crate::{
         header::{Header, HeaderLevel},
         image::Image,
         link::Link,
-        list::{List, ListItem},
+        list::{List, ListItem, ListItemMarker, ListType, NumberedListItemMarkerSeparator},
         markdown::Markdown,
         paragraph::Paragraph,
     },

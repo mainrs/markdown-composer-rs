@@ -1,25 +1,110 @@
-use crate::traits::MarkdownElement;
+use crate::MarkdownElement;
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::fmt;
+use std::{borrow::Cow, fmt};
+
+/// The type of list.
+#[derive(Clone, Debug, Eq, PartialEq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+pub enum ListType {
+    /// An ordered list prefixes all its items using numbers.
+    Ordered,
+    /// An unordered list prefixes all its items using a `ListItemMarker`.
+    Unordered,
+}
+
+impl Default for ListType {
+    fn default() -> Self {
+        Self::Unordered
+    }
+}
+
+/// The marker used to indicate the start of a `ListItem`.
+#[derive(Clone, Debug, Eq, PartialEq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+pub enum ListItemMarker {
+    /// The `*` list item marker.
+    Asterisk,
+    /// The `-` list item marker.
+    Dash,
+    /// A numbered list item marker.
+    ///
+    /// Numbered items use a special separator char that immediately follows the
+    /// item number.
+    Numbered(NumberedListItemMarkerSeparator),
+    /// The `+` list item marker.
+    Plus,
+}
+
+impl Default for ListItemMarker {
+    fn default() -> Self {
+        Self::Dash
+    }
+}
+
+impl fmt::Display for ListItemMarker {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let c = match self {
+            Self::Asterisk => Cow::Borrowed("*"),
+            Self::Dash => Cow::Borrowed("-"),
+            Self::Numbered(separator) => Cow::Owned(format!("{}", separator)),
+            Self::Plus => Cow::Borrowed("+"),
+        };
+        write!(f, "{}", c)
+    }
+}
+
+/// The separator used to separate the list item number and the item content.
+#[derive(Clone, Debug, Eq, PartialEq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+pub enum NumberedListItemMarkerSeparator {
+    /// The `.` separator.
+    Dot,
+    /// The `)` separator.
+    Parenthesis,
+}
+
+impl Default for NumberedListItemMarkerSeparator {
+    fn default() -> Self {
+        Self::Dot
+    }
+}
+
+impl fmt::Display for NumberedListItemMarkerSeparator {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let c = match self {
+            Self::Dot => '.',
+            Self::Parenthesis => ')',
+        };
+        write!(f, "{}", c)
+    }
+}
 
 /// An item inside a markdown list.
 pub type ListItem = Box<dyn MarkdownElement>;
 
 /// A markdown list.
+///
+/// # Note
+///
+/// The implementation does __NOT__ check if the marker matches the specified
+/// list type. It is theoretically possible to create an ordered list that uses
+/// dashes as its item markers. The here exposed inner fields should therefore
+/// be used with care.
+///
+/// Please use the [builders](module.builder.html) to safely create Markdown
+/// compliant documents!
 #[derive(Clone, Debug, Default)]
-// #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct List {
-    /// The items of the list.
     pub items: Vec<ListItem>,
-    /// `True` if the list should be ordered.
-    ///
-    /// Ordered lists use numbers instead of dots as the enumeration character.
-    pub ordered: bool,
+    pub marker: ListItemMarker,
+    pub ty: ListType,
 }
 
 impl List {
     /// Creates a new default `List`.
+    ///
+    /// The list will be unordered and uses a dash marker.
     pub fn new() -> Self {
         Self::default()
     }
@@ -27,7 +112,16 @@ impl List {
     /// Creates a new empty ordered `List`.
     pub fn ordered() -> Self {
         Self {
-            ordered: true,
+            marker: ListItemMarker::Numbered(NumberedListItemMarkerSeparator::default()),
+            ty: ListType::Ordered,
+            ..Default::default()
+        }
+    }
+
+    /// Creates a new empty unordered `List`.
+    pub fn unordered() -> Self {
+        Self {
+            ty: ListType::Unordered,
             ..Default::default()
         }
     }
@@ -36,52 +130,32 @@ impl List {
     pub fn ordered_with(items: Vec<ListItem>) -> Self {
         Self {
             items,
-            ordered: true,
-        }
-    }
-
-    /// Creates a new empty unordered `List`.
-    pub fn unordered() -> Self {
-        Self {
-            ordered: false,
+            marker: ListItemMarker::Numbered(NumberedListItemMarkerSeparator::default()),
+            ty: ListType::Ordered,
             ..Default::default()
         }
     }
 
-    /// Creates a new unordered list with the given items.
+    /// Creates a new unordered `List` with the given items.
     pub fn unordered_with(items: Vec<ListItem>) -> Self {
         Self {
             items,
-            ordered: false,
+            ty: ListType::Unordered,
+            ..Default::default()
         }
-    }
-
-    /// Adds an item to the list.
-    pub fn add(&mut self, item: ListItem) -> &mut Self {
-        self.items.push(item);
-        self
     }
 }
 
 impl fmt::Display for List {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         for (idx, item) in self.items.iter().enumerate() {
-            let checkmark = if self.ordered {
-                format!("{}.", idx + 1)
-            } else {
-                "-".to_string()
+            let marker = match self.ty {
+                ListType::Ordered => format!("{}{}", idx + 1, self.marker),
+                ListType::Unordered => format!("{}", self.marker),
             };
-            writeln!(f, "{} {}", checkmark, item.render())?;
+            writeln!(f, "{} {}", marker, item.render())?;
         }
 
         Ok(())
-    }
-}
-
-// INVESTIGATE: Is this good design? Makes the API a little bit easier to use by
-// not having to explicitly clone.
-impl From<&mut List> for List {
-    fn from(value: &mut List) -> Self {
-        value.clone()
     }
 }
