@@ -30,8 +30,8 @@
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">builders</span>::{<span class="ident">image</span>::<span class="ident">ImageBuilder</span>, <span class="ident">link</span>::<span class="ident">LinkBuilder</span>, <span class="ident">list</span>::<span class="ident">ListBuilder</span>},
-    <span class="ident">traits</span>::<span class="ident">MarkdownElement</span>,
-    <span class="ident">transforms</span>::<span class="ident">Bold</span>,
+    <span class="ident">traits</span>::{<span class="ident">AsFooter</span>, <span class="ident">MarkdownElement</span>},
+    <span class="ident">transforms</span>::{<span class="ident">BlockQuote</span>, <span class="ident">Bold</span>, <span class="ident">CodeBlock</span>, <span class="ident">Inline</span>, <span class="ident">Italic</span>},
     <span class="ident">types</span>::{
         <span class="ident">header</span>::{<span class="ident">Header</span>, <span class="ident">HeaderLevel</span>},
         <span class="ident">image</span>::<span class="ident">Image</span>,
@@ -43,6 +43,6 @@
 };
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;extension-github&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">extensions</span>::<span class="ident">github</span>::<span class="ident">CheckmarkItem</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">extensions</span>::<span class="ident">github</span>::{<span class="ident">CheckmarkItem</span>, <span class="ident">Strikethrough</span>};
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "markdown_composer";</script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
