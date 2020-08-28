@@ -21,7 +21,49 @@
 <span id="20">20</span>
 <span id="21">21</span>
 <span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
 </pre><div class="example-wrap"><pre class="rust ">
+<span class="doccomment">//! `markdown-composer` helps you to create Markdown documents using Rust code.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! The main API involves around using builders to create structured Markdown</span>
+<span class="doccomment">//! elements that can be combined together into a Markdown document</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ```rust,norun</span>
+<span class="doccomment">//! use markdown_composer::{Link, Markdown};</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! let link = Link::builder()</span>
+<span class="doccomment">//!     .text(&quot;Hello World&quot;)</span>
+<span class="doccomment">//!     .url(&quot;https://hello.world&quot;)</span>
+<span class="doccomment">//!     .build();</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! let md = Markdown::new()</span>
+<span class="doccomment">//!     .header1(&quot;First level header&quot;)</span>
+<span class="doccomment">//!     .paragraph(&quot;Some standalone paragraph&quot;)</span>
+<span class="doccomment">//!     .link(link)</span>
+<span class="doccomment">//!     .paragraph(&quot;Some other paragraph&quot;);</span>
+<span class="doccomment">//! let rendered = md.render();</span>
+<span class="doccomment">//! ```</span>
+
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">builders</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">extensions</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">traits</span>;
