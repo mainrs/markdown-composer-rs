@@ -6,8 +6,8 @@ pub mod types;
 
 pub use crate::{
     builders::{image::ImageBuilder, link::LinkBuilder, list::ListBuilder},
-    traits::MarkdownElement,
-    transforms::Bold,
+    traits::{AsFooter, MarkdownElement},
+    transforms::{BlockQuote, Bold, CodeBlock, Inline, Italic},
     types::{
         header::{Header, HeaderLevel},
         image::Image,
@@ -19,4 +19,4 @@ pub use crate::{
 };
 
 #[cfg(feature = "extension-github")]
-pub use crate::extensions::github::CheckmarkItem;
+pub use crate::extensions::github::{CheckmarkItem, Strikethrough};
